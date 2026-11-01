@@ -2,9 +2,10 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { DigestRow, Night, ReadNight, RunStatus } from './types.js';
 
-type Entry = { at: string; job: string; status: RunStatus; owner: string | null; error: string | null };
+export type Entry = { at: string; job: string; status: RunStatus; owner: string | null; error: string | null };
 
-function parseLine(line: string): Entry | null {
+// One log line, or null when it does not parse.
+export function parseLine(line: string): Entry | null {
   let v: unknown;
   try {
     v = JSON.parse(line);
